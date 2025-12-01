@@ -1,0 +1,263 @@
+@use "../variables" as *;
+
+.listing-card {
+  background: $color-bg-primary;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  border: 1px solid $color-border-primary;
+  display: flex;
+  flex-direction: row;
+  box-shadow: $shadow-md;
+  transition: transform $transition-fast, box-shadow $transition-fast,
+    border-color $transition-fast;
+
+  &__image-wrap {
+    position: relative;
+    flex: 0 0 40%;
+    max-width: 40%;
+    height: 230px;
+    overflow: hidden;
+  }
+
+  &__swiper {
+    width: 100%;
+    height: 100%;
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 1;
+
+      &-active {
+        background: $color-bg-primary;
+      }
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &--fallback {
+      background: $color-bg-tertiary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: none;
+    }
+  }
+
+  &__image-fallback-icon {
+    font-size: 2rem;
+    color: $color-text-muted;
+  }
+
+  &__favorite {
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    width: 2rem;
+    height: 2rem;
+    border-radius: $border-radius-full;
+    border: none;
+    background: $color-bg-overlay-light;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: $z-index-base;
+    flex-shrink: 0;
+
+    &-icon {
+      width: $font-size-xl;
+      height: $font-size-xl;
+      fill: none;
+      stroke: $color-text-tertiary;
+      stroke-width: 1.4;
+    }
+
+    &--active &-icon {
+      color: $color-accent;
+    }
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    padding: $spacing-2xl $spacing-3xl;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__price {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-3xl;
+    margin: 0;
+  }
+
+  &__meta {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin: 0;
+  }
+
+  &__address-line {
+    font-size: $font-size-base;
+    color: $color-text-tertiary;
+    margin: 0;
+  }
+
+  &--status {
+    min-height: 230px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+
+  &__loading-icon {
+    font-size: 1.8rem;
+    color: $color-primary;
+    animation: listings-page-spin $transition-slow infinite;
+  }
+
+  &__loading-text {
+    font-size: $font-size-md;
+    color: $color-text-secondary;
+  }
+
+  &__empty-icon {
+    font-size: 1.8rem;
+    color: $color-text-muted;
+  }
+
+  &--marketing {
+    background: $color-accent-light;
+    border-color: $color-accent-border;
+    min-height: auto;
+    padding: $spacing-2xl $spacing-3xl;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: none;
+      box-shadow: $shadow-md;
+      border-color: $color-accent-border;
+    }
+  }
+
+  &__marketing-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__marketing-text {
+    font-size: $font-size-md;
+    color: $color-text-dark;
+    font-weight: $font-weight-medium;
+    text-align: center;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+    border-color: $color-border-secondary;
+  }
+
+  &__brand-pill {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 0.35rem 0.8rem;
+    border-radius: $border-radius-sm;
+    background: $color-bg-overlay-lighter;
+    box-shadow: $shadow-xl;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    z-index: $z-index-base;
+    max-width: calc(100% - 4rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__brand-logo {
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: $border-radius-full;
+    background: $color-primary;
+    color: $color-bg-primary;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-sm;
+  }
+
+  &__brand-text {
+    letter-spacing: $letter-spacing-normal;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .listing-card {
+    flex-direction: column;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    margin-bottom: $spacing-2xl;
+
+    &__image-wrap {
+      width: 100%;
+      max-width: 100%;
+      flex: 1 1 auto;
+      height: 210px;
+      position: relative;
+    }
+
+    &__brand-pill {
+      max-width: calc(100% - 3.5rem);
+    }
+
+    &--marketing {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      margin-bottom: $spacing-2xl;
+      padding: $spacing-xl $spacing-3xl;
+    }
+
+    &__marketing-text {
+      font-size: $font-size-base;
+    }
+  }
+}
+

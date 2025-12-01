@@ -1,0 +1,185 @@
+@use "variables" as *;
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-index-header;
+  background: $color-bg-primary;
+  border-bottom: 1px solid $color-border-primary;
+  box-shadow: $shadow-sm;
+}
+
+.app-header__container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-3xl;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4xl;
+}
+
+.app-header__left {
+  flex: 0 0 auto;
+}
+
+.app-header__logo {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-extrabold;
+  color: $color-primary;
+  text-decoration: none;
+  letter-spacing: $letter-spacing-tight;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-hover;
+  }
+}
+
+.app-header__center {
+  flex: 1 1 auto;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app-header__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.app-header__search-icon {
+  position: absolute;
+  left: $spacing-xl;
+  color: $color-text-tertiary;
+  font-size: $font-size-lg;
+  pointer-events: none;
+}
+
+.app-header__search-input {
+  width: 100%;
+  padding: 0.625rem $spacing-xl 0.625rem 2.75rem;
+  border: 1px solid $color-border-secondary;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  background: $color-bg-primary;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.app-header__search-clear {
+  position: absolute;
+  right: $spacing-lg;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  background: transparent;
+  color: $color-text-tertiary;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    background: $color-bg-secondary;
+    color: $color-text-primary;
+  }
+
+  i {
+    font-size: $spacing-lg;
+  }
+}
+
+.app-header__right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: $spacing-3xl;
+}
+
+.app-header__link {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  position: relative;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &--with-dot {
+    padding-right: $spacing-2xl;
+  }
+
+  &--more {
+    gap: $spacing-xs;
+  }
+
+  &--signin {
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+
+    &:hover {
+      color: $color-primary-hover;
+    }
+  }
+}
+
+.app-header__dot {
+  position: absolute;
+  right: $spacing-lg;
+  transform: translateY(-50%);
+  width: $spacing-md;
+  height: $spacing-md;
+  border-radius: 50%;
+  background: $color-accent;
+}
+
+.app-header__chevron {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .app-header__container {
+    padding: 0 $spacing-xl;
+    gap: $spacing-xl;
+  }
+
+  .app-header__center {
+    max-width: none;
+    margin: 0;
+  }
+
+  .app-header__right {
+    gap: $spacing-lg;
+  }
+
+  .app-header__link {
+    font-size: $font-size-sm;
+
+    &--with-dot,
+    &--more {
+      display: none;
+    }
+  }
+}

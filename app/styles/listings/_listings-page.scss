@@ -1,0 +1,104 @@
+@use "../variables" as *;
+
+.listings-page {
+  min-height: 100vh;
+  padding: calc(#{$header-height} + #{$spacing-3xl}) #{$spacing-3xl} #{$spacing-5xl};
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  font-family: $font-family-base;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: $spacing-4xl;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__subtitle {
+    font-size: $font-size-md;
+    color: $color-text-secondary;
+  }
+
+  &__content {
+    display: flex;
+    gap: $spacing-3xl;
+    height: calc(100vh - 12rem);
+    margin-top: $spacing-3xl;
+  }
+
+  &__map-container {
+    display: none;
+    flex: 0 0 60%;
+    height: 100%;
+    position: sticky;
+    top: $header-height;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+  }
+
+  &__list-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-right: $spacing-md;
+  }
+
+  &__grid {
+    margin-top: 0;
+    display: block;
+    height: 100%;
+  }
+
+  &__item {
+    margin: 0 $spacing-md $spacing-lg;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .listings-page {
+    &__map-container {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .listings-page {
+    padding: calc(#{$header-height} + #{$spacing-xl}) #{$spacing-3xl} #{$spacing-5xl} #{$spacing-3xl};
+
+    &__header {
+      margin-bottom: $spacing-lg;
+    }
+
+    &__content {
+      flex-direction: column;
+      height: auto;
+      margin-top: $spacing-xl;
+    }
+
+    &__map-container {
+      display: none;
+    }
+
+    &__list-container {
+      padding-right: 0;
+      overflow: visible;
+    }
+
+    &__grid {
+      margin-top: 0;
+      margin-left: -#{$spacing-3xl};
+      margin-right: -#{$spacing-3xl};
+      gap: 0;
+    }
+  }
+}
+

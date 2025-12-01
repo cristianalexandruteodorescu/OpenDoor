@@ -1,0 +1,1 @@
+export const MARKETING_BANNER_INSERT_INDEX = 1;
